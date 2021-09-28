@@ -71,6 +71,22 @@ public:
 
         return reversedList->next;
     }
+    
+    ListNode* reverseList2(ListNode* head)
+    {
+        ListNode* prePtr = nullptr;
+        ListNode* currentPtr = head;
+
+        while (currentPtr != nullptr)
+        {
+            ListNode* nextPtr = currentPtr->next;
+            currentPtr->next = prePtr;
+            prePtr = currentPtr;
+            currentPtr = nextPtr;
+        }
+
+        return prePtr;
+    }
 };
 
 int main()
@@ -79,14 +95,14 @@ int main()
 
     ListNode* head = new ListNode(0);
     ListNode* a = new ListNode(1);
-    ListNode* b = new ListNode(4);
-    ListNode* c = new ListNode(2);
+    ListNode* b = new ListNode(2);
+    ListNode* c = new ListNode(3);
 
     head->next = a;
     a->next = b;
     b->next = c;
 
-    auto r = s.reverseList(head);
+    auto r = s.reverseList2(head);
 
     std::cout << "Hello World!\n";
 }
